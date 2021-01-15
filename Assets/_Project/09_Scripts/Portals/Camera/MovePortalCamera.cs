@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class MovePortalCamera : MonoBehaviour
 {
-    [SerializeField] private Transform _playerCameraTransform;
-    [SerializeField] private Transform _currentPortalTransform;
-    [SerializeField] private Transform _linkedPortalTransform;
+    [SerializeField] private Transform _playerCameraTransform = null;
+    [SerializeField] private Transform _currentPortalTransform = null;
+    [SerializeField] private Transform _linkedPortalTransform = null;
 
 
     private void LateUpdate()

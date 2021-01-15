@@ -1159,6 +1159,7 @@ GameObject:
   - component: {fileID: 790824792}
   - component: {fileID: 790824791}
   - component: {fileID: 790824793}
+  - component: {fileID: 790824794}
   m_Layer: 0
   m_Name: FPS Player
   m_TagString: Player
@@ -1223,6 +1224,20 @@ MonoBehaviour:
   _gravity: -19.62
   _jumpHeight: 2
   _isGrounded: 0
+--- !u!136 &790824794
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 790824790}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &792934688
 GameObject:
   m_ObjectHideFlags: 0
@@ -1600,6 +1615,17 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 896195101}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &898250900 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 917135543146200595, guid: cbbf57ab28c290c4799d0e84beb5f755, type: 3}
+  m_PrefabInstance: {fileID: 4226108337999407608}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70c87c91808ef5b49b30187ebd698102, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &939522680
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1615,6 +1641,10 @@ PrefabInstance:
       propertyPath: _playerController
       value: 
       objectReference: {fileID: 790824791}
+    - target: {fileID: 917135543146200595, guid: cbbf57ab28c290c4799d0e84beb5f755, type: 3}
+      propertyPath: _linkedPortal
+      value: 
+      objectReference: {fileID: 898250900}
     - target: {fileID: 1231583810073484728, guid: cbbf57ab28c290c4799d0e84beb5f755, type: 3}
       propertyPath: m_TargetTexture
       value: 
@@ -2350,6 +2380,17 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1402132464}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1409239488 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 917135543146200595, guid: cbbf57ab28c290c4799d0e84beb5f755, type: 3}
+  m_PrefabInstance: {fileID: 939522680}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70c87c91808ef5b49b30187ebd698102, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1413015863
 GameObject:
   m_ObjectHideFlags: 0
@@ -3189,6 +3230,10 @@ PrefabInstance:
       propertyPath: _portalToTeleportPlayerTo
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 917135543146200595, guid: cbbf57ab28c290c4799d0e84beb5f755, type: 3}
+      propertyPath: _linkedPortal
+      value: 
+      objectReference: {fileID: 1409239488}
     - target: {fileID: 1231583810073484728, guid: cbbf57ab28c290c4799d0e84beb5f755, type: 3}
       propertyPath: m_TargetTexture
       value: 

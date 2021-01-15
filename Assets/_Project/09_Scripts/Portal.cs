@@ -17,14 +17,14 @@ public class Portal : MonoBehaviour {
     Camera portalCam;
     Camera playerCam;
     Material firstRecursionMat;
-    List<PortalTraveller> trackedTravellers;
+    List<PortalTravellerSeb> trackedTravellers;
     MeshFilter screenMeshFilter;
 
     void Awake () {
         playerCam = Camera.main;
         portalCam = GetComponentInChildren<Camera> ();
         portalCam.enabled = false;
-        trackedTravellers = new List<PortalTraveller> ();
+        trackedTravellers = new List<PortalTravellerSeb> ();
         screenMeshFilter = screen.GetComponent<MeshFilter> ();
         screen.material.SetInt ("displayMask", 1);
     }
@@ -36,7 +36,7 @@ public class Portal : MonoBehaviour {
     void HandleTravellers () {
 
         for (int i = 0; i < trackedTravellers.Count; i++) {
-            PortalTraveller traveller = trackedTravellers[i];
+            PortalTravellerSeb traveller = trackedTravellers[i];
             Transform travellerT = traveller.transform;
             var m = linkedPortal.transform.localToWorldMatrix * transform.worldToLocalMatrix * travellerT.localToWorldMatrix;
 
@@ -212,7 +212,7 @@ public class Portal : MonoBehaviour {
         return screenThickness;
     }
 
-    void UpdateSliceParams (PortalTraveller traveller) {
+    void UpdateSliceParams (PortalTravellerSeb traveller) {
         // Calculate slice normal
         int side = SideOfPortal (traveller.transform.position);
         Vector3 sliceNormal = transform.forward * -side;
@@ -274,7 +274,7 @@ public class Portal : MonoBehaviour {
         }
     }
 
-    void OnTravellerEnterPortal (PortalTraveller traveller) {
+    void OnTravellerEnterPortal (PortalTravellerSeb traveller) {
         if (!trackedTravellers.Contains (traveller)) {
             traveller.EnterPortalThreshold ();
             traveller.previousOffsetFromPortal = traveller.transform.position - transform.position;
@@ -283,14 +283,14 @@ public class Portal : MonoBehaviour {
     }
 
     void OnTriggerEnter (Collider other) {
-        var traveller = other.GetComponent<PortalTraveller> ();
+        var traveller = other.GetComponent<PortalTravellerSeb> ();
         if (traveller) {
             OnTravellerEnterPortal (traveller);
         }
     }
 
     void OnTriggerExit (Collider other) {
-        var traveller = other.GetComponent<PortalTraveller> ();
+        var traveller = other.GetComponent<PortalTravellerSeb> ();
         if (traveller && trackedTravellers.Contains (traveller)) {
             traveller.ExitPortalThreshold ();
             trackedTravellers.Remove (traveller);

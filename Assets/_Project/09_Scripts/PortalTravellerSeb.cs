@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class PortalTraveller : MonoBehaviour {
+public class PortalTravellerSeb : MonoBehaviour {
 
     public GameObject graphicsObject;
     public GameObject graphicsClone { get; set; }

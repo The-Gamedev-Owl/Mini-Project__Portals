@@ -9,9 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4226108336650002395}
+  - component: {fileID: 2766490252822417239}
+  - component: {fileID: 917135543146200595}
   m_Layer: 0
   m_Name: Portal
-  m_TagString: Untagged
+  m_TagString: Portal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35,6 +37,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2766490252822417239
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4226108336650002394}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.6257477, y: 2.884409, z: 1}
+  m_Center: {x: 0.010507584, y: 0.0012125969, z: 0}
+--- !u!114 &917135543146200595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4226108336650002394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70c87c91808ef5b49b30187ebd698102, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4226108336724336216
 GameObject:
   m_ObjectHideFlags: 0
@@ -49,7 +76,7 @@ GameObject:
   - component: {fileID: 4226108336724336218}
   m_Layer: 0
   m_Name: RightPillar
-  m_TagString: Untagged
+  m_TagString: Portal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -144,7 +171,7 @@ GameObject:
   - component: {fileID: 4226108337695989242}
   m_Layer: 0
   m_Name: LeftPillar
-  m_TagString: Untagged
+  m_TagString: Portal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -239,7 +266,7 @@ GameObject:
   - component: {fileID: 4226108337730197914}
   m_Layer: 0
   m_Name: TopPillar
-  m_TagString: Untagged
+  m_TagString: Portal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -334,7 +361,7 @@ GameObject:
   - component: {fileID: 3745646009058808264}
   m_Layer: 9
   m_Name: Teleporter RedPortal
-  m_TagString: Untagged
+  m_TagString: Portal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -429,7 +456,7 @@ GameObject:
   - component: {fileID: 2612542253079530029}
   m_Layer: 0
   m_Name: Portal_Camera
-  m_TagString: Untagged
+  m_TagString: Portal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -503,9 +530,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ee63f58a81da774da05e14758b7b176, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerCamera: {fileID: 0}
-  _portalToBeAt: {fileID: 0}
-  _portalPlayerIsAt: {fileID: 0}
+  _playerCameraTransform: {fileID: 0}
+  _currentPortalTransform: {fileID: 0}
+  _linkedPortalTransform: {fileID: 0}
 --- !u!114 &2612542253079530029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -518,4 +545,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d193217bf475392499139a5b83bf8f97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _linkedPortalScreenMeshRenderer: {fileID: 0}
   _portalScreenMeshRenderer: {fileID: 7978472343835437825}
