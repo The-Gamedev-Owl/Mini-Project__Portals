@@ -20,12 +20,33 @@ public class PortalTeleporter : MonoBehaviour
             if (value != null && value.GetType() == typeof(PortalTeleporter))
             {
                 _linkedPortal = value;
+
+                if (value.name.Contains(" (->"))
+                    RenamePortal(value.name.Substring(0, value.name.IndexOf(" (->")));
+                else
+                    RenamePortal(value.name);
+
                 if (value.LinkedPortal == null || value.LinkedPortal != this)
                     value.LinkedPortal = this;
+            }
+            else
+            {
+                _linkedPortal = null;
+                RenamePortal(string.Empty);
             }
         }
     }
 
+    private void RenamePortal(string linkedPortalName)
+    {
+        if (name.Contains(" (->"))
+            name = name.Remove(name.IndexOf(" (->"));
+
+        if (linkedPortalName != string.Empty)
+            name += " (-> " + linkedPortalName + " <-)";
+        else
+            name += " (-> Unlinked)";
+    }
 
     private void Awake()
     {

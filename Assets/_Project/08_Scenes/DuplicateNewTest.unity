@@ -1775,7 +1775,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: ed0326630749a8e46a3d80f9df221f22, type: 2}
     - target: {fileID: 4226108336650002394, guid: cbbf57ab28c290c4799d0e84beb5f755, type: 3}
       propertyPath: m_Name
-      value: Red Portal (A)
+      value: Red Portal (A) (-> Blue Portal (B) <-)
       objectReference: {fileID: 0}
     - target: {fileID: 4226108336650002395, guid: cbbf57ab28c290c4799d0e84beb5f755, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3328,7 +3328,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4226108336650002394, guid: cbbf57ab28c290c4799d0e84beb5f755, type: 3}
       propertyPath: m_Name
-      value: Blue Portal (B)
+      value: Blue Portal (B) (-> Red Portal (A) <-)
       objectReference: {fileID: 0}
     - target: {fileID: 4226108336650002395, guid: cbbf57ab28c290c4799d0e84beb5f755, type: 3}
       propertyPath: m_LocalPosition.x
