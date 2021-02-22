@@ -5,8 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(Camera))]
 public class RenderPortalCamera : MonoBehaviour
 {
-    [SerializeField] private MeshRenderer _linkedPortalScreenMeshRenderer;
-    [SerializeField] private MeshRenderer _portalScreenMeshRenderer;
+    [SerializeField] private MeshRenderer _linkedPortalScreenMeshRenderer = null;
+    [SerializeField] private MeshRenderer _portalScreenMeshRenderer = null;
 
     private Camera _portalCamera;
 

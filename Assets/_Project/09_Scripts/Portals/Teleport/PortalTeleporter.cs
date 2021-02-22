@@ -9,6 +9,22 @@ public class PortalTeleporter : MonoBehaviour
     [SerializeField] private PortalTeleporter _linkedPortal = null;
 
     private List<PortalTraveller> _trackedTravellers;
+    private PortalTeleporter LinkedPortal
+    {
+        get
+        {
+            return _linkedPortal;
+        }
+        set
+        {
+            if (value != null && value.GetType() == typeof(PortalTeleporter))
+            {
+                _linkedPortal = value;
+                if (value.LinkedPortal == null || value.LinkedPortal != this)
+                    value.LinkedPortal = this;
+            }
+        }
+    }
 
 
     private void Awake()
@@ -19,6 +35,11 @@ public class PortalTeleporter : MonoBehaviour
     private void FixedUpdate()
     {
         CheckEveryTravellerShouldTeleport();
+    }
+
+    private void OnValidate()
+    {
+        LinkedPortal = _linkedPortal;
     }
 
     /// <summary>
