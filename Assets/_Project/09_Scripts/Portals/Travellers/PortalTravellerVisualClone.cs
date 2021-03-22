@@ -15,10 +15,10 @@ public class PortalTravellerVisualClone : MonoBehaviour
 
     public void CleanTravellerUnwantedComponents()
     {
-        StartCoroutine(LoopThroughChildren(transform));
+        LoopThroughChildren(transform);
     }
 
-    private IEnumerator LoopThroughChildren(Transform parent)
+    private void LoopThroughChildren(Transform parent)
     {
         RemoveUnwantedComponents(parent);
         foreach (Transform child in parent)
@@ -26,7 +26,7 @@ public class PortalTravellerVisualClone : MonoBehaviour
             if (child.childCount > 0)
                 LoopThroughChildren(child);
             RemoveUnwantedComponents(child);
-            yield return null;
+            //yield return null;
         }
     }
 
