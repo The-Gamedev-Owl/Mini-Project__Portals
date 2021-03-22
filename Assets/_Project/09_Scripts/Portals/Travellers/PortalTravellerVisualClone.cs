@@ -26,7 +26,6 @@ public class PortalTravellerVisualClone : MonoBehaviour
             if (child.childCount > 0)
                 LoopThroughChildren(child);
             RemoveUnwantedComponents(child);
-            //yield return null;
         }
     }
 
