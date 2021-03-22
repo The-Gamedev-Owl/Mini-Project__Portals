@@ -31,7 +31,10 @@ public class RenderPortalCamera : MonoBehaviour
     private void OnPostRender()
     {
         // Show portal screen so player still see it. Illusion with PreRender is flawless
-        _portalScreenMeshRenderer.material.SetInt("displayMask", 1);
+        if (_portalScreenMeshRenderer.isVisible)
+            _portalScreenMeshRenderer.material.SetInt("displayMask", 1);
+        else
+            _portalScreenMeshRenderer.material.SetInt("displayMask", 0);
         _portalScreenMeshRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
     }
 
