@@ -99,7 +99,10 @@ public class PortalTeleporter : MonoBehaviour
         if (_trackedTravellers.Contains(portalTravellerToRemove))
         {
             if (shouldDestroyComponent)
+            {
+                DestroyTravellerVisualClone(portalTravellerToRemove);
                 Destroy(portalTravellerToRemove.GetComponent<PortalTraveller>());
+            }
             _trackedTravellers.Remove(portalTravellerToRemove);
         }
     }
@@ -119,6 +122,32 @@ public class PortalTeleporter : MonoBehaviour
 
             _trackedTravellers.Add(newPortalTraveller);
             newPortalTraveller.distanceFromLastPortal = newTraveller.transform.position - transform.position;
+            if (shouldAddComponent)
+                CreateTravellerVisualClone(newPortalTraveller);
+        }
+    }
+
+    private void CreateTravellerVisualClone(PortalTraveller newPortalTraveller)
+    {
+        GameObject instantiatedVisualCloneObject = Instantiate(newPortalTraveller.gameObject);
+        PortalTeleporter instantiatedVisualCloneTeleporter = instantiatedVisualCloneObject.GetComponent<PortalTeleporter>();
+        PortalTravellerVisualClone visualClone;
+
+        if (instantiatedVisualCloneTeleporter != null)
+            Destroy(instantiatedVisualCloneTeleporter);
+
+        visualClone = instantiatedVisualCloneObject.AddComponent<PortalTravellerVisualClone>();
+        visualClone.CleanTravellerUnwantedComponents();
+        SetTeleportPosition(newPortalTraveller.transform, instantiatedVisualCloneObject.transform);
+        newPortalTraveller.visualClone = visualClone;
+    }
+
+    private void DestroyTravellerVisualClone(PortalTraveller portalTraveller)
+    {
+        if (portalTraveller.visualClone != null)
+        {
+            Destroy(portalTraveller.visualClone.gameObject);
+            portalTraveller.visualClone = null;
         }
     }
 
@@ -146,6 +175,8 @@ public class PortalTeleporter : MonoBehaviour
             bool hasTeleported = false;
             PortalTraveller currentTraveller = _trackedTravellers[travellerIndex];
 
+            MovePortalTravellerVisualClone(currentTraveller);
+
             if (CheckIfTravellerShouldBeTeleported(currentTraveller))
             {
                 TeleportTraveller(currentTraveller);
@@ -156,6 +187,12 @@ public class PortalTeleporter : MonoBehaviour
             if (!hasTeleported)
                 currentTraveller.distanceFromLastPortal = currentTraveller.transform.position - transform.position;
         }
+    }
+
+    private void MovePortalTravellerVisualClone(PortalTraveller currentTraveller)
+    {
+        if (currentTraveller.visualClone != null)
+            SetTeleportPosition(currentTraveller.transform, currentTraveller.visualClone.transform);
     }
 
 
@@ -178,16 +215,21 @@ public class PortalTeleporter : MonoBehaviour
 
     private void TeleportTraveller(PortalTraveller currentTraveller)
     {
-        // Compute matrix to find linked portal's position where current traveller should be teleported.
-        // Taking into account rotation, linked portal's position and current portal's position. In any case, the correct position will be found
-        var m = _linkedPortal.transform.localToWorldMatrix * transform.worldToLocalMatrix * currentTraveller.transform.localToWorldMatrix;
-
-        currentTraveller.transform.position = m.GetColumn(3);
-        currentTraveller.transform.rotation = m.rotation;
+        SetTeleportPosition(currentTraveller.transform, currentTraveller.transform);
 
         // Remove current traveller from '_trackedTravellers' in this portal
         RemoveObjectFromTrackedTravellers(currentTraveller, false);
         // Add current traveller to '_trackedTravellers' in linked portal
         _linkedPortal.AddObjectToTrackedTravellers(currentTraveller.gameObject, false);
+    }
+
+    private void SetTeleportPosition(Transform travellerTransformToCompute, Transform travellerTransformToSet)
+    {
+        // Compute matrix to find linked portal's position where current traveller should be teleported.
+        // Taking into account rotation, linked portal's position and current portal's position. In any case, the correct position will be found
+        Matrix4x4 teleportMatrix = _linkedPortal.transform.localToWorldMatrix * transform.worldToLocalMatrix * travellerTransformToCompute.localToWorldMatrix;
+
+        travellerTransformToSet.position = teleportMatrix.GetColumn(3);
+        travellerTransformToSet.rotation = teleportMatrix.rotation;
     }
 }
